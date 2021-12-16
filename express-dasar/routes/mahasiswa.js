@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models/index');
+const auth = require("../middleware/auth");
 
 // GET mahasiswa
-router.get('/', async function (req, res, next) {
+router.get('/', auth, async function (req, res, next) {
     try {
         const mahasiswa = await model.mahasiswa.findAll({
             include: 'kelas'

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,6 +55,19 @@ const defaultSorted = [
 ];
 
 export const TableComponent = (props) => {
+
+  const [mahasiswa, setMahasiswa] = useState([]);
+
+  useEffect(() => {
+    getMahasiswa();
+  }, []);
+
+  const getMahasiswa = async () => {
+    const response = await axios.get('http://127.0.0.1:3030/mahasiswa');
+     console.log(response.data);
+     console.log('heello');
+  }
+
   return (
     <div className="mt-5">
       <Container>
